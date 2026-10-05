@@ -1,8 +1,8 @@
-# Copyright (C) 2026 Gillan e Solution
+# Copyright (C) 2026 Gillan e Solution & Abdul Rehman
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Default Image for ACF 1.0\n"
+"Project-Id-Version: Default Image ACF 1.0\n"
 "Report-Msgid-Bugs-To: https://gillan.co/\n"
 "Last-Translator: Gillan e Solution <info@gillan.co>\n"
 "Language-Team: English <info@gillan.co>\n"
@@ -11,41 +11,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-10-05T12:00:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Domain: default-image-for-acf\n"
+"X-Domain: default-image-acf\n"
 
 #. Plugin Name of the plugin
-#: default-image-for-acf.php
-msgid "Default Image for ACF"
+#: default-image-acf.php
+msgid "Default Image ACF"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: default-image-for-acf.php
+#: default-image-acf.php
 msgid "https://gillan.co/"
 msgstr ""
 
 #. Description of the plugin
-#: default-image-for-acf.php
+#: default-image-acf.php
 msgid "Allows you to set a fallback default image for Advanced Custom Fields (ACF) image fields when no image is selected."
 msgstr ""
 
 #. Author of the plugin
-#: default-image-for-acf.php
+#: default-image-acf.php
 msgid "Gillan e Solution"
 msgstr ""
 
 #. Author URI of the plugin
-#: default-image-for-acf.php
+#: default-image-acf.php
 msgid "https://gillan.co/"
 msgstr ""
 
-#: default-image-for-acf.php
+#: default-image-acf.php
 msgid "%1$s requires %2$sAdvanced Custom Fields%3$s (Free or PRO) or Secure Custom Fields to be installed and active."
 msgstr ""
 
-#: default-image-for-acf.php
+#: default-image-acf.php
 msgid "Default Image"
 msgstr ""
 
-#: default-image-for-acf.php
+#: default-image-acf.php
 msgid "Select a default image to be used when no image is selected."
 msgstr ""

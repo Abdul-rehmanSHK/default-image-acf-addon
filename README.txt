@@ -1,4 +1,4 @@
-=== Default Image for ACF ===
+=== Default Image ACF ===
 Contributors: abdulrehmanirfan, gillanesolution
 Donate link: https://gillan.co/
 Tags: acf, acf-image, default-image, advanced-custom-fields, acf-addon
@@ -13,11 +13,11 @@ Easily set a fallback default image for Advanced Custom Fields (ACF) image field
 
 == Description ==
 
-**Default Image for ACF** allows WordPress developers and content creators to set a default fallback image directly within Advanced Custom Fields (ACF) Image field settings.
+**Default Image ACF** allows WordPress developers and content creators to set a default fallback image directly within Advanced Custom Fields (ACF) Image field settings.
 
 When editing a post, page, or custom post type where an ACF Image field is left empty, the plugin automatically provides the specified default image. This prevents broken layouts, eliminates the need for repeated fallback conditional checks in template files, and ensures a seamless display across your entire WordPress site.
 
-Developed and maintained by **Gillan e Solution**.
+Developed and maintained by **Gillan e Solution** and **Abdul Rehman**.
 
 ### Key Features
 
@@ -28,7 +28,7 @@ Developed and maintained by **Gillan e Solution**.
     *   Image URL
     *   Image ID
 *   **Lightweight & Fast**: Zero frontend overhead; hooks directly into ACF's native value loading pipeline.
-*   **Extensible for Developers**: Provides the `default_image_for_acf_value` filter hook for dynamic conditional fallbacks.
+*   **Extensible for Developers**: Provides the `default_image_acf_value` filter hook for dynamic conditional fallbacks.
 *   **ACF PRO & Secure Custom Fields (SCF) Compatible**: Supports Advanced Custom Fields (Free & PRO) as well as Secure Custom Fields.
 *   **Fully Compatible with PHP 8.x and Latest WordPress**: Clean, secure, and compliant with WordPress coding standards.
 
@@ -37,11 +37,11 @@ Developed and maintained by **Gillan e Solution**.
 ### From WordPress Dashboard:
 1. Log in to your WordPress admin dashboard.
 2. Navigate to **Plugins → Add New**.
-3. Search for `Default Image for ACF`.
+3. Search for `Default Image ACF`.
 4. Click **Install Now**, then click **Activate**.
 
 ### Manual Installation:
-1. Download the plugin ZIP package (`default-image-for-acf.zip`).
+1. Download the plugin ZIP package (`default-image-acf.zip`).
 2. Log in to your WordPress dashboard and go to **Plugins → Add New → Upload Plugin**.
 3. Choose the downloaded ZIP file and click **Install Now**.
 4. Click **Activate Plugin**.
@@ -76,15 +76,15 @@ Yes, the plugin is fully tested and compatible with PHP 7.4 through PHP 8.4, and
 == Changelog ==
 
 = 1.0 =
-* Initial release by Gillan e Solution.
+* Initial release by Gillan e Solution and Abdul Rehman.
 * Fully compatible with WordPress 6.x and PHP 7.4 through 8.4.
 * Enhanced ACF compatibility (supports ACF Free, ACF PRO, and Secure Custom Fields).
 * Improved code architecture with safe dependency checking.
 * Added attachment verification to prevent broken image references if default image is deleted.
-* Added developer filter hook `default_image_for_acf_value`.
+* Added developer filter hook `default_image_acf_value`.
 * Translation-ready with internationalization support.
 
 == Upgrade Notice ==
 
 = 1.0 =
-Initial release of Default Image for ACF by Gillan e Solution.
+Initial release of Default Image ACF.
