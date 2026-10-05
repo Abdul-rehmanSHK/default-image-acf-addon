@@ -64,9 +64,6 @@ final class GES_Default_Image_ACF {
 	 * @return void
 	 */
 	public function init() {
-		// Load plugin textdomain on init hook for internationalization.
-		add_action( 'init', array( $this, 'load_textdomain' ) );
-
 		// Check if ACF or Secure Custom Fields is active.
 		if ( ! $this->is_acf_active() ) {
 			add_action( 'admin_notices', array( $this, 'notice_missing_acf' ) );
@@ -76,19 +73,6 @@ final class GES_Default_Image_ACF {
 		// Register ACF field setting and value filter.
 		add_action( 'acf/render_field_settings/type=image', array( $this, 'render_default_image_setting' ) );
 		add_filter( 'acf/load_value/type=image', array( $this, 'load_default_image_value' ), 10, 3 );
-	}
-
-	/**
-	 * Load plugin textdomain for translations.
-	 *
-	 * @return void
-	 */
-	public function load_textdomain() {
-		load_plugin_textdomain(
-			'default-image-acf',
-			false,
-			dirname( plugin_basename( __FILE__ ) ) . '/languages'
-		);
 	}
 
 	/**
