@@ -18,11 +18,6 @@ msgstr ""
 msgid "Default Image ACF"
 msgstr ""
 
-#. Plugin URI of the plugin
-#: default-image-acf.php
-msgid "https://gillan.co/"
-msgstr ""
-
 #. Description of the plugin
 #: default-image-acf.php
 msgid "Allows you to set a fallback default image for Advanced Custom Fields (ACF) image fields when no image is selected."

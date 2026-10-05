@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name:       Default Image ACF
- * Plugin URI:        https://gillan.co/
  * Description:       Allows you to set a fallback default image for Advanced Custom Fields (ACF) image fields when no image is selected.
  * Version:           1.0
  * Requires at least: 5.8
