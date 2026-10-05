@@ -3,7 +3,7 @@ Contributors: abdulrehmanirfan, gillanesolution
 Donate link: https://gillan.co/
 Tags: acf, acf-image, default-image, advanced-custom-fields, acf-addon
 Requires at least: 5.8
-Tested up to: 6.7
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.0
 License: GPLv2 or later
@@ -66,8 +66,8 @@ All three ACF return formats are supported: Image Array, Image URL, and Image ID
 = What happens if the default image is deleted from the Media Library? =
 The plugin includes a safeguard check. If the selected default image has been deleted from your Media Library, it safely falls back to returning false or empty to prevent PHP warnings or broken links.
 
-= Is it compatible with PHP 8+ and WordPress 6.x? =
-Yes, the plugin is fully tested and compatible with PHP 7.4 through PHP 8.4, and the latest versions of WordPress.
+= Is it compatible with PHP 8+ and latest WordPress? =
+Yes, the plugin is fully tested and compatible with PHP 7.4 through PHP 8.4, and the latest versions of WordPress (up to 7.1).
 
 == Screenshots ==
 
@@ -77,7 +77,7 @@ Yes, the plugin is fully tested and compatible with PHP 7.4 through PHP 8.4, and
 
 = 1.0 =
 * Initial release by Gillan e Solution and Abdul Rehman.
-* Fully compatible with WordPress 6.x and PHP 7.4 through 8.4.
+* Fully compatible with WordPress 6.x through 7.1 and PHP 7.4 through 8.4.
 * Enhanced ACF compatibility (supports ACF Free, ACF PRO, and Secure Custom Fields).
 * Improved code architecture with safe dependency checking.
 * Added attachment verification to prevent broken image references if default image is deleted.
