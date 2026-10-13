@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Gillan Default Image for Advanced Custom Fields
+ * Plugin Name:       Fallback Image for Advanced Custom Fields
  * Description:       Allows you to set a fallback default image for Advanced Custom Fields (ACF) image fields when no image is selected.
  * Version:           1.0
  * Requires at least: 5.8
@@ -9,10 +9,10 @@
  * Author URI:        https://gillan.co/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       gillan-default-image-acf
+ * Text Domain:       fallback-image-for-acf
  * Domain Path:       /languages
  *
- * @package Gillan_Default_Image_ACF
+ * @package Fallback_Image_For_ACF
  */
 
 // Prevent direct file access.
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Main plugin class.
  */
-final class GES_Default_Image_ACF {
+final class Fallback_Image_For_ACF {
 
 	/**
 	 * Plugin version.
@@ -35,14 +35,14 @@ final class GES_Default_Image_ACF {
 	/**
 	 * Singleton instance of the class.
 	 *
-	 * @var GES_Default_Image_ACF|null
+	 * @var Fallback_Image_For_ACF|null
 	 */
 	private static $instance = null;
 
 	/**
 	 * Returns the main plugin instance.
 	 *
-	 * @return GES_Default_Image_ACF
+	 * @return Fallback_Image_For_ACF
 	 */
 	public static function get_instance() {
 		if ( null === self::$instance ) {
@@ -65,7 +65,7 @@ final class GES_Default_Image_ACF {
 	 */
 	public function init() {
 		// Load plugin text domain for translations.
-		load_plugin_textdomain( 'gillan-default-image-acf', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'fallback-image-for-acf', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 		// Check if ACF or Secure Custom Fields is active.
 		if ( ! $this->is_acf_active() ) {
@@ -104,8 +104,8 @@ final class GES_Default_Image_ACF {
 				<?php
 				printf(
 					/* translators: 1: Plugin name, 2: ACF link opening tag, 3: ACF link closing tag */
-					esc_html__( '%1$s requires %2$sAdvanced Custom Fields%3$s (Free or PRO) or Secure Custom Fields to be installed and active.', 'gillan-default-image-acf' ),
-					'<strong>' . esc_html__( 'Gillan Default Image for Advanced Custom Fields', 'gillan-default-image-acf' ) . '</strong>',
+					esc_html__( '%1$s requires %2$sAdvanced Custom Fields%3$s (Free or PRO) or Secure Custom Fields to be installed and active.', 'fallback-image-for-acf' ),
+					'<strong>' . esc_html__( 'Fallback Image for Advanced Custom Fields', 'fallback-image-for-acf' ) . '</strong>',
 					'<a href="' . esc_url( $acf_install_url ) . '">',
 					'</a>'
 				);
@@ -129,8 +129,8 @@ final class GES_Default_Image_ACF {
 		acf_render_field_setting(
 			$field,
 			array(
-				'label'        => __( 'Default Image', 'gillan-default-image-acf' ),
-				'instructions' => __( 'Select a default image to be used when no image is selected.', 'gillan-default-image-acf' ),
+				'label'        => __( 'Default Image', 'fallback-image-for-acf' ),
+				'instructions' => __( 'Select a default image to be used when no image is selected.', 'fallback-image-for-acf' ),
 				'type'         => 'image',
 				'name'         => 'default_value',
 				'return_format'=> 'id',
@@ -177,26 +177,37 @@ final class GES_Default_Image_ACF {
 		 * @param array      $field      The ACF field settings array.
 		 * @param int        $default_id The resolved default image attachment ID.
 		 */
-		$value = apply_filters( 'gillan_default_image_acf_value', $value, $post_id, $field, $default_id );
+		$value = apply_filters( 'fallback_image_for_acf_value', $value, $post_id, $field, $default_id );
 
 		/**
-		 * Backwards-compatible filter hook.
+		 * Backwards-compatible filter hooks.
 		 */
+		$value = apply_filters( 'gillan_default_image_acf_value', $value, $post_id, $field, $default_id );
 		return apply_filters( 'default_image_acf_value', $value, $post_id, $field, $default_id );
 	}
 }
 
 // Instantiate the plugin.
-GES_Default_Image_ACF::get_instance();
+Fallback_Image_For_ACF::get_instance();
 
-// Alias for backwards compatibility if referenced by previous name.
-class_alias( 'GES_Default_Image_ACF', 'Default_Image_ACF' );
+// Aliases for backwards compatibility if referenced by previous names.
+class_alias( 'Fallback_Image_For_ACF', 'GES_Default_Image_ACF' );
+class_alias( 'Fallback_Image_For_ACF', 'Default_Image_ACF' );
 
 /**
  * Global helper function to retrieve the plugin instance.
  *
- * @return GES_Default_Image_ACF
+ * @return Fallback_Image_For_ACF
+ */
+function fallback_image_for_acf() {
+	return Fallback_Image_For_ACF::get_instance();
+}
+
+/**
+ * Backwards compatibility helper function.
+ *
+ * @return Fallback_Image_For_ACF
  */
 function ges_default_image_acf() {
-	return GES_Default_Image_ACF::get_instance();
+	return Fallback_Image_For_ACF::get_instance();
 }
