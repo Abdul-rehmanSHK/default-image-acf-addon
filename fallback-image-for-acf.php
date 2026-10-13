@@ -11,8 +11,6 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       fallback-image-for-acf
  * Domain Path:       /languages
- *
- * @package Fallback_Image_For_ACF
  */
 
 // Prevent direct file access.
@@ -26,65 +24,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class Fallback_Image_For_ACF {
 
 	/**
-	 * Plugin version.
-	 *
-	 * @var string
-	 */
-	const VERSION = '1.0';
-
-	/**
-	 * Singleton instance of the class.
-	 *
-	 * @var Fallback_Image_For_ACF|null
-	 */
-	private static $instance = null;
-
-	/**
-	 * Returns the main plugin instance.
-	 *
-	 * @return Fallback_Image_For_ACF
-	 */
-	public static function get_instance() {
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
-	/**
-	 * Constructor.
-	 */
-	private function __construct() {
-		add_action( 'plugins_loaded', array( $this, 'init' ) );
-	}
-
-	/**
-	 * Initialize plugin components and register hooks.
+	 * Initialize plugin hooks.
 	 *
 	 * @return void
 	 */
-	public function init() {
-		// Load plugin text domain for translations.
+	public static function init() {
+		// Load translations.
 		load_plugin_textdomain( 'fallback-image-for-acf', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
-		// Check if ACF or Secure Custom Fields is active.
-		if ( ! $this->is_acf_active() ) {
-			add_action( 'admin_notices', array( $this, 'notice_missing_acf' ) );
+		// Check ACF / Secure Custom Fields dependency.
+		if ( ! class_exists( 'ACF' ) && ! function_exists( 'acf' ) && ! class_exists( 'Secure_Custom_Fields' ) ) {
+			add_action( 'admin_notices', array( __CLASS__, 'notice_missing_acf' ) );
 			return;
 		}
 
-		// Register ACF field setting and value filter.
-		add_action( 'acf/render_field_settings/type=image', array( $this, 'render_default_image_setting' ) );
-		add_filter( 'acf/load_value/type=image', array( $this, 'load_default_image_value' ), 10, 3 );
-	}
-
-	/**
-	 * Check if Advanced Custom Fields or Secure Custom Fields is active.
-	 *
-	 * @return bool
-	 */
-	public function is_acf_active() {
-		return class_exists( 'ACF' ) || function_exists( 'acf' ) || class_exists( 'Secure_Custom_Fields' );
+		// Register ACF image field setting and fallback filter.
+		add_action( 'acf/render_field_settings/type=image', array( __CLASS__, 'render_default_image_setting' ) );
+		add_filter( 'acf/load_value/type=image', array( __CLASS__, 'load_default_image_value' ), 10, 3 );
 	}
 
 	/**
@@ -92,77 +48,62 @@ final class Fallback_Image_For_ACF {
 	 *
 	 * @return void
 	 */
-	public function notice_missing_acf() {
+	public static function notice_missing_acf() {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
 
-		$acf_install_url = admin_url( 'plugin-install.php?tab=search&s=advanced+custom+fields' );
-		?>
-		<div class="notice notice-warning is-dismissible">
-			<p>
-				<?php
-				printf(
-					/* translators: 1: Plugin name, 2: ACF link opening tag, 3: ACF link closing tag */
-					esc_html__( '%1$s requires %2$sAdvanced Custom Fields%3$s (Free or PRO) or Secure Custom Fields to be installed and active.', 'fallback-image-for-acf' ),
-					'<strong>' . esc_html__( 'Fallback Image for Advanced Custom Fields', 'fallback-image-for-acf' ) . '</strong>',
-					'<a href="' . esc_url( $acf_install_url ) . '">',
-					'</a>'
-				);
-				?>
-			</p>
-		</div>
-		<?php
-	}
+		$install_url = admin_url( 'plugin-install.php?tab=search&s=advanced+custom+fields' );
 
-	/**
-	 * Add "Default Image" field setting to ACF Image field type.
-	 *
-	 * @param array $field The ACF field settings array.
-	 * @return void
-	 */
-	public function render_default_image_setting( $field ) {
-		if ( ! function_exists( 'acf_render_field_setting' ) ) {
-			return;
-		}
-
-		acf_render_field_setting(
-			$field,
-			array(
-				'label'        => __( 'Default Image', 'fallback-image-for-acf' ),
-				'instructions' => __( 'Select a default image to be used when no image is selected.', 'fallback-image-for-acf' ),
-				'type'         => 'image',
-				'name'         => 'default_value',
-				'return_format'=> 'id',
+		printf(
+			'<div class="notice notice-warning is-dismissible"><p>%s</p></div>',
+			sprintf(
+				/* translators: 1: Plugin name, 2: ACF link opening tag, 3: ACF link closing tag */
+				esc_html__( '%1$s requires %2$sAdvanced Custom Fields%3$s (Free or PRO) or Secure Custom Fields to be installed and active.', 'fallback-image-for-acf' ),
+				'<strong>' . esc_html__( 'Fallback Image for Advanced Custom Fields', 'fallback-image-for-acf' ) . '</strong>',
+				'<a href="' . esc_url( $install_url ) . '">',
+				'</a>'
 			)
 		);
 	}
 
 	/**
-	 * Fallback to the default image if the field value is empty.
+	 * Add "Default Image" setting to ACF Image fields.
+	 *
+	 * @param array $field The ACF field settings array.
+	 * @return void
+	 */
+	public static function render_default_image_setting( $field ) {
+		if ( function_exists( 'acf_render_field_setting' ) ) {
+			acf_render_field_setting(
+				$field,
+				array(
+					'label'        => __( 'Default Image', 'fallback-image-for-acf' ),
+					'instructions' => __( 'Select a default image to be used when no image is selected.', 'fallback-image-for-acf' ),
+					'type'         => 'image',
+					'name'         => 'default_value',
+					'return_format'=> 'id',
+				)
+			);
+		}
+	}
+
+	/**
+	 * Fallback to default image if field value is empty.
 	 *
 	 * @param mixed      $value   The field value.
 	 * @param int|string $post_id The post ID.
-	 * @param array      $field   The field array.
+	 * @param array      $field   The field settings array.
 	 * @return mixed
 	 */
-	public function load_default_image_value( $value, $post_id, $field ) {
-		// Bail early if a value is already set or field settings are missing.
-		if ( ! empty( $value ) || ! is_array( $field ) || empty( $field['default_value'] ) ) {
+	public static function load_default_image_value( $value, $post_id, $field ) {
+		if ( ! empty( $value ) || empty( $field['default_value'] ) ) {
 			return $value;
 		}
 
 		$default    = $field['default_value'];
-		$default_id = 0;
+		$default_id = is_array( $default ) ? absint( $default['id'] ?? 0 ) : absint( $default );
 
-		// Extract numeric attachment ID whether stored as an array or numeric value.
-		if ( is_array( $default ) && ! empty( $default['id'] ) ) {
-			$default_id = absint( $default['id'] );
-		} elseif ( is_numeric( $default ) ) {
-			$default_id = absint( $default );
-		}
-
-		// Ensure the attachment actually exists in the Media Library.
 		if ( $default_id > 0 && wp_get_attachment_url( $default_id ) ) {
 			$value = $default_id;
 		}
@@ -170,44 +111,14 @@ final class Fallback_Image_For_ACF {
 		/**
 		 * Filter the resolved fallback image value.
 		 *
-		 * Allows developers to conditionally alter the default image value.
-		 *
-		 * @param mixed      $value      The fallback attachment ID (or empty if not found).
+		 * @param mixed      $value      The fallback attachment ID (or empty).
 		 * @param int|string $post_id    The post ID.
 		 * @param array      $field      The ACF field settings array.
-		 * @param int        $default_id The resolved default image attachment ID.
+		 * @param int        $default_id The default image attachment ID.
 		 */
-		$value = apply_filters( 'fallback_image_for_acf_value', $value, $post_id, $field, $default_id );
-
-		/**
-		 * Backwards-compatible filter hooks.
-		 */
-		$value = apply_filters( 'gillan_default_image_acf_value', $value, $post_id, $field, $default_id );
-		return apply_filters( 'default_image_acf_value', $value, $post_id, $field, $default_id );
+		return apply_filters( 'fallback_image_for_acf_value', $value, $post_id, $field, $default_id );
 	}
 }
 
-// Instantiate the plugin.
-Fallback_Image_For_ACF::get_instance();
-
-// Aliases for backwards compatibility if referenced by previous names.
-class_alias( 'Fallback_Image_For_ACF', 'GES_Default_Image_ACF' );
-class_alias( 'Fallback_Image_For_ACF', 'Default_Image_ACF' );
-
-/**
- * Global helper function to retrieve the plugin instance.
- *
- * @return Fallback_Image_For_ACF
- */
-function fallback_image_for_acf() {
-	return Fallback_Image_For_ACF::get_instance();
-}
-
-/**
- * Backwards compatibility helper function.
- *
- * @return Fallback_Image_For_ACF
- */
-function ges_default_image_acf() {
-	return Fallback_Image_For_ACF::get_instance();
-}
+// Boot plugin.
+add_action( 'plugins_loaded', array( 'Fallback_Image_For_ACF', 'init' ) );
