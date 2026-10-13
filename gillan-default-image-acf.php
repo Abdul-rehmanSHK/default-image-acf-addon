@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Default Image ACF
+ * Plugin Name:       Gillan Default Image for Advanced Custom Fields
  * Description:       Allows you to set a fallback default image for Advanced Custom Fields (ACF) image fields when no image is selected.
  * Version:           1.0
  * Requires at least: 5.8
@@ -9,10 +9,10 @@
  * Author URI:        https://gillan.co/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       default-image-acf
+ * Text Domain:       gillan-default-image-acf
  * Domain Path:       /languages
  *
- * @package Default_Image_ACF
+ * @package Gillan_Default_Image_ACF
  */
 
 // Prevent direct file access.
@@ -64,6 +64,9 @@ final class GES_Default_Image_ACF {
 	 * @return void
 	 */
 	public function init() {
+		// Load plugin text domain for translations.
+		load_plugin_textdomain( 'gillan-default-image-acf', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+
 		// Check if ACF or Secure Custom Fields is active.
 		if ( ! $this->is_acf_active() ) {
 			add_action( 'admin_notices', array( $this, 'notice_missing_acf' ) );
@@ -101,8 +104,8 @@ final class GES_Default_Image_ACF {
 				<?php
 				printf(
 					/* translators: 1: Plugin name, 2: ACF link opening tag, 3: ACF link closing tag */
-					esc_html__( '%1$s requires %2$sAdvanced Custom Fields%3$s (Free or PRO) or Secure Custom Fields to be installed and active.', 'default-image-acf' ),
-					'<strong>' . esc_html__( 'Default Image ACF', 'default-image-acf' ) . '</strong>',
+					esc_html__( '%1$s requires %2$sAdvanced Custom Fields%3$s (Free or PRO) or Secure Custom Fields to be installed and active.', 'gillan-default-image-acf' ),
+					'<strong>' . esc_html__( 'Gillan Default Image for Advanced Custom Fields', 'gillan-default-image-acf' ) . '</strong>',
 					'<a href="' . esc_url( $acf_install_url ) . '">',
 					'</a>'
 				);
@@ -126,8 +129,8 @@ final class GES_Default_Image_ACF {
 		acf_render_field_setting(
 			$field,
 			array(
-				'label'        => __( 'Default Image', 'default-image-acf' ),
-				'instructions' => __( 'Select a default image to be used when no image is selected.', 'default-image-acf' ),
+				'label'        => __( 'Default Image', 'gillan-default-image-acf' ),
+				'instructions' => __( 'Select a default image to be used when no image is selected.', 'gillan-default-image-acf' ),
 				'type'         => 'image',
 				'name'         => 'default_value',
 				'return_format'=> 'id',
@@ -173,6 +176,11 @@ final class GES_Default_Image_ACF {
 		 * @param int|string $post_id    The post ID.
 		 * @param array      $field      The ACF field settings array.
 		 * @param int        $default_id The resolved default image attachment ID.
+		 */
+		$value = apply_filters( 'gillan_default_image_acf_value', $value, $post_id, $field, $default_id );
+
+		/**
+		 * Backwards-compatible filter hook.
 		 */
 		return apply_filters( 'default_image_acf_value', $value, $post_id, $field, $default_id );
 	}
