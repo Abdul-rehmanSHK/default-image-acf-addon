@@ -41,7 +41,7 @@ Developed and maintained by **Gillan e Solution** and **Abdul Rehman**.
 4. Click **Install Now**, then click **Activate**.
 
 ### Manual Installation:
-1. Download the plugin ZIP package (`fallback-image-for-acf.zip`).
+1. Download the plugin ZIP package (`fallback-image-for-acf-addon.zip`).
 2. Log in to your WordPress dashboard and go to **Plugins → Add New → Upload Plugin**.
 3. Choose the downloaded ZIP file and click **Install Now**.
 4. Click **Activate Plugin**.

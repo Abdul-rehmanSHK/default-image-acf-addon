@@ -11,36 +11,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-10-14T12:00:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Domain: fallback-image-for-acf\n"
+"X-Domain: fallback-image-for-acf-addon\n"
 
 #. Plugin Name of the plugin
-#: fallback-image-for-acf.php
+#: fallback-image-for-acf-addon.php
 msgid "Fallback Image for ACF Addon"
 msgstr ""
 
 #. Description of the plugin
-#: fallback-image-for-acf.php
+#: fallback-image-for-acf-addon.php
 msgid "Allows you to set a fallback default image for Advanced Custom Fields (ACF) image fields when no image is selected."
 msgstr ""
 
 #. Author of the plugin
-#: fallback-image-for-acf.php
+#: fallback-image-for-acf-addon.php
 msgid "Gillan e Solution"
 msgstr ""
 
 #. Author URI of the plugin
-#: fallback-image-for-acf.php
+#: fallback-image-for-acf-addon.php
 msgid "https://gillan.co/"
 msgstr ""
 
-#: fallback-image-for-acf.php
+#: fallback-image-for-acf-addon.php
 msgid "%1$s requires %2$sAdvanced Custom Fields%3$s (Free or PRO) or Secure Custom Fields to be installed and active."
 msgstr ""
 
-#: fallback-image-for-acf.php
+#: fallback-image-for-acf-addon.php
 msgid "Default Image"
 msgstr ""
 
-#: fallback-image-for-acf.php
+#: fallback-image-for-acf-addon.php
 msgid "Select a default image to be used when no image is selected."
 msgstr ""
