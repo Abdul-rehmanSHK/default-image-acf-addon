@@ -1,4 +1,4 @@
-=== Fallback Image for Advanced Custom Fields ===
+=== Fallback Image for ACF Addon ===
 Contributors: abdulrehmanirfan, gillanesolution
 Donate link: https://gillan.co/
 Tags: acf, fallback-image, default-image, advanced-custom-fields, acf-image
@@ -13,7 +13,7 @@ Easily set a fallback default image for Advanced Custom Fields (ACF) image field
 
 == Description ==
 
-**Fallback Image for Advanced Custom Fields** allows WordPress developers and content creators to set a default fallback image directly within Advanced Custom Fields (ACF) Image field settings.
+**Fallback Image for ACF Addon** allows WordPress developers and content creators to set a default fallback image directly within Advanced Custom Fields (ACF) Image field settings.
 
 When editing a post, page, or custom post type where an ACF Image field is left empty, the plugin automatically provides the specified default image. This prevents broken layouts, eliminates the need for repeated fallback conditional checks in template files, and ensures a seamless display across your entire WordPress site.
 
@@ -37,7 +37,7 @@ Developed and maintained by **Gillan e Solution** and **Abdul Rehman**.
 ### From WordPress Dashboard:
 1. Log in to your WordPress admin dashboard.
 2. Navigate to **Plugins → Add New**.
-3. Search for `Fallback Image for Advanced Custom Fields`.
+3. Search for `Fallback Image for ACF Addon`.
 4. Click **Install Now**, then click **Activate**.
 
 ### Manual Installation:
@@ -87,4 +87,4 @@ Yes, the plugin is fully tested and compatible with PHP 7.4 through PHP 8.4, and
 == Upgrade Notice ==
 
 = 1.0 =
-Initial release of Fallback Image for Advanced Custom Fields.
+Initial release of Fallback Image for ACF Addon.

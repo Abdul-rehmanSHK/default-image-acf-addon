@@ -2,7 +2,7 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Fallback Image for Advanced Custom Fields 1.0\n"
+"Project-Id-Version: Fallback Image for ACF Addon 1.0\n"
 "Report-Msgid-Bugs-To: https://gillan.co/\n"
 "Last-Translator: Gillan e Solution <info@gillan.co>\n"
 "Language-Team: English <info@gillan.co>\n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: fallback-image-for-acf.php
-msgid "Fallback Image for Advanced Custom Fields"
+msgid "Fallback Image for ACF Addon"
 msgstr ""
 
 #. Description of the plugin

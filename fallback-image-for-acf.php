@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Fallback Image for Advanced Custom Fields
+ * Plugin Name:       Fallback Image for ACF Addon
  * Description:       Allows you to set a fallback default image for Advanced Custom Fields (ACF) image fields when no image is selected.
  * Version:           1.0
  * Requires at least: 5.8
@@ -60,7 +60,7 @@ final class Fallback_Image_For_ACF {
 			sprintf(
 				/* translators: 1: Plugin name, 2: ACF link opening tag, 3: ACF link closing tag */
 				esc_html__( '%1$s requires %2$sAdvanced Custom Fields%3$s (Free or PRO) or Secure Custom Fields to be installed and active.', 'fallback-image-for-acf' ),
-				'<strong>' . esc_html__( 'Fallback Image for Advanced Custom Fields', 'fallback-image-for-acf' ) . '</strong>',
+				'<strong>' . esc_html__( 'Fallback Image for ACF Addon', 'fallback-image-for-acf' ) . '</strong>',
 				'<a href="' . esc_url( $install_url ) . '">',
 				'</a>'
 			)
